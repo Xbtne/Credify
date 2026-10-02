@@ -434,24 +434,52 @@ button {
   transition: all var(--transition-fast);
 }
 
+/* Mobile Drawer Backdrop */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 5, 10, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1090;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.drawer-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 /* Mobile Drawer */
 .mobile-drawer {
   position: fixed;
   top: 0;
-  right: -100%;
-  width: 300px;
+  right: 0;
+  width: 280px;
+  max-width: 80vw;
   height: 100vh;
-  background: var(--bg-darker);
-  border-left: 1px solid var(--border-glass);
+  height: 100dvh;
+  background: rgba(6, 8, 16, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid var(--border-glow);
   z-index: 1100;
-  padding: 2rem 1.5rem;
+  padding: 1.8rem 1.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: right var(--transition-smooth);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
 }
 .mobile-drawer.open {
-  right: 0;
+  transform: translateX(0);
+  visibility: visible;
 }
 .drawer-header {
   display: flex;

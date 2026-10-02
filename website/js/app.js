@@ -223,20 +223,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Mobile Drawer Toggle
   const mobileToggle = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
   const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
+  function openDrawer() {
+    mobileDrawer?.classList.add('open');
+    drawerBackdrop?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    mobileDrawer?.classList.remove('open');
+    drawerBackdrop?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
   mobileToggle?.addEventListener('click', () => {
-    mobileDrawer?.classList.toggle('open');
+    if (mobileDrawer?.classList.contains('open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
   });
 
-  drawerCloseBtn?.addEventListener('click', () => {
-    mobileDrawer?.classList.remove('open');
-  });
+  drawerCloseBtn?.addEventListener('click', closeDrawer);
+  drawerBackdrop?.addEventListener('click', closeDrawer);
 
   document.querySelectorAll('.drawer-link').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileDrawer?.classList.remove('open');
-    });
+    link.addEventListener('click', closeDrawer);
   });
 
   // 7. FAQ Accordion
