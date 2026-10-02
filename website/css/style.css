@@ -147,26 +147,28 @@ button {
   z-index: -2;
   pointer-events: none;
   opacity: 0.25;
+  max-width: 90vw;
+  max-height: 90vh;
 }
 .glow-1 {
-  width: 600px;
-  height: 600px;
-  top: -100px;
-  left: -100px;
+  width: 500px;
+  height: 500px;
+  top: 0;
+  left: 0;
   background: radial-gradient(circle, var(--blue-deep), transparent 70%);
 }
 .glow-2 {
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   top: 40%;
-  right: -100px;
+  right: 0;
   background: radial-gradient(circle, var(--cyan-neon), transparent 70%);
 }
 .glow-3 {
-  width: 650px;
-  height: 650px;
-  bottom: -150px;
-  left: 30%;
+  width: 500px;
+  height: 500px;
+  bottom: 0;
+  left: 20%;
   background: radial-gradient(circle, var(--blue-electric), transparent 70%);
 }
 
@@ -434,52 +436,39 @@ button {
   transition: all var(--transition-fast);
 }
 
-/* Mobile Drawer Backdrop */
+/* Mobile Drawer Overlay */
 .drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 5, 10, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 1090;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.drawer-backdrop.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  display: none;
 }
 
-/* Mobile Drawer */
+/* Mobile Drawer (Full Screen Mobile Navigation Modal) */
 .mobile-drawer {
   position: fixed;
   top: 0;
+  left: 0;
   right: 0;
-  width: 280px;
-  max-width: 80vw;
+  bottom: 0;
+  width: 100vw;
   height: 100vh;
   height: 100dvh;
   background: rgba(6, 8, 16, 0.98);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-left: 1px solid var(--border-glow);
-  z-index: 1100;
-  padding: 1.8rem 1.4rem;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: 99999;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transform: translateX(100%);
+  opacity: 0;
   visibility: hidden;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
-  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
   box-sizing: border-box;
 }
 .mobile-drawer.open {
-  transform: translateX(0);
+  opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 .drawer-header {
   display: flex;

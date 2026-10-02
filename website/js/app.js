@@ -220,37 +220,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 6. Mobile Drawer Toggle
+  // 6. Mobile Menu Overlay Toggle
   const mobileToggle = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
-  const drawerBackdrop = document.getElementById('drawerBackdrop');
   const drawerCloseBtn = document.getElementById('drawerCloseBtn');
 
-  function openDrawer() {
+  function openMenu() {
     mobileDrawer?.classList.add('open');
-    drawerBackdrop?.classList.add('active');
-    document.body.style.overflow = 'hidden';
   }
 
-  function closeDrawer() {
+  function closeMenu() {
     mobileDrawer?.classList.remove('open');
-    drawerBackdrop?.classList.remove('active');
-    document.body.style.overflow = '';
   }
 
-  mobileToggle?.addEventListener('click', () => {
+  mobileToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
     if (mobileDrawer?.classList.contains('open')) {
-      closeDrawer();
+      closeMenu();
     } else {
-      openDrawer();
+      openMenu();
     }
   });
 
-  drawerCloseBtn?.addEventListener('click', closeDrawer);
-  drawerBackdrop?.addEventListener('click', closeDrawer);
+  drawerCloseBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeMenu();
+  });
 
   document.querySelectorAll('.drawer-link').forEach((link) => {
-    link.addEventListener('click', closeDrawer);
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
   });
 
   // 7. FAQ Accordion
